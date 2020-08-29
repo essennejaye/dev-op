@@ -8,24 +8,24 @@ router.get('/', (req, res) => {
         attributes: [
             'id',
             'title',
-            'posts_text',
+            // 'posts_text',
             'created_at',
         ],
         order: [['created_at', 'DESC']],
-        include: [
-            // {
-            //     model: Comments,
-            //     attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
-            //     include: {
-            //         model: User,
-            //         attributes: ['username']
-            //     }
-            // },
-            {
-                model: User,
-                attributes: ['username']
-            }
-        ]
+        // include: [
+        //     {
+        //         model: Comments,
+        //         attributes: ['id', 'comments_text', 'posts_id', 'user_id', 'created_at'],
+        //         include: {
+        //             model: User,
+        //             attributes: ['username']
+        //         }
+        //     },
+        //     {
+        //         model: User,
+        //         attributes: ['username']
+        //     }
+        // ]
     })
         .then(dbPostsData => res.json(dbPostsData))
         .catch(err => {
@@ -45,14 +45,14 @@ router.get('/:id', (req, res) => {
             'created_at',
         ],
         include: [
-            // {
-            //     model: Comments,
-            //     attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
-            //     include: {
-            //         model: User,
-            //         attributes: ['username']
-            //     }
-            // },
+            {
+                model: Comments,
+                attributes: ['id', 'comments_text', 'posts_id', 'user_id', 'created_at'],
+                include: {
+                    model: User,
+                    attributes: ['username']
+                }
+            },
             {
                 model: User,
                 attributes: ['username']

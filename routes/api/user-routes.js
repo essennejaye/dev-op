@@ -6,16 +6,16 @@ router.get('/', (req, res) => {
     // access User model and run .findall() method
     User.findAll({
         attributes: { exclude: ['password'] },
-        // include: [
-        //     {
-        //         model: Posts,
-        //         attributes: [
-        //             'id',
-        //             'title',
-        //             'posts_url',
-        //             'created_at']
-        //     }
-        // ]
+        include: [
+            {
+                model: Posts,
+                attributes: [
+                    'id',
+                    'title',
+                    'posts_text',
+                    'created_at']
+            }
+        ]
     })
         .then(dbUserData => res.json(dbUserData))
         .catch(err => {
@@ -31,21 +31,21 @@ router.get('/:id', (req, res) => {
         where: {
             id: req.params.id
         },
-        // include: [
-        //     {
-        //         model: Posts,
-        //         attributes: ['id', 'title', 'posts_url', 'created_at']
-        //     },
-        //     // include the Comment model here:
-        //     {
-        //         model: Comments,
-        //         attributes: ['id', 'comment_text', 'created_at'],
-        //         include: {
-        //             model: Posts,
-        //             attributes: ['title']
-        //         }
-        //     }
-        // ]
+        include: [
+            {
+                model: Posts,
+                attributes: ['id', 'title', 'posts_text', 'created_at']
+            },
+            // include the Comment model here:
+            {
+                model: Comments,
+                attributes: ['id', 'comments_text', 'created_at'],
+                include: {
+                    model: Posts,
+                    attributes: ['title']
+                }
+            }
+        ]
     })
         .then(dbUserData => {
             if (!dbUserData) {
