@@ -175,10 +175,15 @@ p {
 }
 
 /* FORM */
+.login {
+  padding: 5px;
+}
 .form-label,
 .form-input,
-.form-textarea {
+.form-textarea,
+.login-form {
   display: block;
+  padding: 10px;
 }
 
 .form-label {

@@ -64,32 +64,33 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
     User.create({
         username: req.body.username,
-        email: req.body.email,
         password: req.body.password
     })
         .then(dbUserData => {
-            // req.session.save(() => {
-            //     req.session.user_id = dbUserData.id;
-            //     req.session.username = dbUserData.username;
-            //     req.session.loggedIn = true;
+            // create session data and cookie to track loggedIn status
+            req.session.save(() => {
+                req.session.user_id = dbUserData.id;
+                req.session.username = dbUserData.username;
+                req.session.loggedIn = true;
                 res.json(dbUserData);
-            // })
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
+                // })
+            })
+                .catch(err => {
+                    console.log(err);
+                    res.status(500).json(err);
+                });
         });
 });
 router.post('/login', (req, res) => {
-    // expects {email and password}
+    // expects {username and password}
     User.findOne({
         where: {
-            email: req.body.email
+            username: req.body.username
         }
     })
         .then(dbUserData => {
             if (!dbUserData) {
-                res.status(400).json({ message: 'No user found with that email address! ' });
+                res.status(400).json({ message: 'No user found with that username! ' });
                 return;
             }
             const validPassword = dbUserData.checkPassword(req.body.password);
@@ -97,24 +98,26 @@ router.post('/login', (req, res) => {
                 res.status(400).json({ message: 'Incorrect password!' });
                 return;
             }
-//             // req.session.save(() => {
-//             //     req.session.user_id = dbUserData.id;
-//             //     req.session.username = dbUserData.username;
-//             //     req.session.loggedIn = true;
+            // create session data and cookie to track loggedIn status
+            req.session.save(() => {
+                req.session.user_id = dbUserData.id;
+                req.session.username = dbUserData.username;
+                req.session.loggedIn = true;
                 res.json({ user: dbUserData, message: 'You are now logged in!' });
-//             // });
+            });
         });
 });
 
-// router.post('/logout', (req, res) => {
-//     if (req.session.loggedIn) {
-//         req.session.destroy(() => {
-//             res.status(204).end();
-//         });
-//     } else {
-//         res.status(404).end();
-//     }
-// })
+router.post('/logout', (req, res) => {
+    // destroy session cookie and variables to logout
+    if (req.session.loggedIn) {
+        req.session.destroy(() => {
+            res.status(204).end();
+        });
+    } else {
+        res.status(404).end();
+    }
+})
 
 // PUT /api/user/1
 router.put('/:id', (req, res) => {
