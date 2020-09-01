@@ -122,6 +122,17 @@ p {
   display: flex;
   padding: 10px;
 }
+.dashboard-title {
+  font-size: 2rem;
+  background-color: var(--primary);
+  color: var(--dark);
+  padding: 0 10px;
+  display: inline-block;
+  border-radius: var(--border-radius);
+  box-shadow: 6px 5px var(--light-dark);
+
+
+}
 
 .list-group {
   padding: 0;

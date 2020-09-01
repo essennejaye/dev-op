@@ -35,4 +35,4 @@
 * THEN I am automatically signed out of the site 
 
 ## Heroku url
-![](https://ancient-dawn-54812.herokuapp.com/) 
+https://ancient-dawn-54812.herokuapp.com/

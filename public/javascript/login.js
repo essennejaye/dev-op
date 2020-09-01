@@ -14,7 +14,7 @@ async function loginFormHandler(event) {
             headers: { 'Content-Type': 'application/json' }
         });
         if (response.ok) {
-            document.location.replace('/');
+            document.location.replace('/dashboard');
         } else {
             alert('No user found with that username.', response.statusText);
         }
