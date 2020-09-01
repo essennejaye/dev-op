@@ -12,19 +12,21 @@ router.get('/', (req, res) => {
 });
 router.post('/', (req, res) => {
     // check the session
-    // if (req.session) {
+    if (req.session) {
         Comments.create({
             comments_text: req.body.comments_text,
             posts_id: req.body.posts_id,
             // use the id from the session
-            user_id: req.body.user_id
+            user_id: req.session.user_id
         })
-            .then(dbCommentsData => res.json(dbCommentsData))
+            .then(dbCommentsData => {
+                res.json(dbCommentsData);
+            })
             .catch(err => {
                 console.log(err);
                 res.status(400).json(err);
             });
-    // }
+    }
 });
 // router.delete('/:id', (req, res) => {
 //     Comments.destroy({

@@ -12,13 +12,16 @@
   <div class="wrapper">
     <header class="hero">
       <h1 class="app-title">
-       Web-Dev Op-Ed
+        Web-Dev Op-Ed
       </h1>
       <nav class="navigation flex-row">
-              <button id="homepage" class="btn"><a href="/">Homepage</a></button>
-              <button id="dashboard" class="btn"><a href="/">Dashboard</a></button>
-              <button id="login" class="btn"><a href="/login">Login</a></button>
-              <button id="logout" class="btn"><a href="/login">Logout</a></button>
+        <button id="homepage" class="btn"><a href="/">Homepage</a></button>
+        {{#if loggedIn}}
+        <button id="dashboard" class="btn"><a href="/">Dashboard</a></button>
+        <button id="logout" class="btn"><a href="/">Logout</a></button>
+        {{else}}
+        <button id="login" class="btn"><a href="/login">Login</a></button>
+        {{/if}}
       </nav>
     </header>
     <main>
@@ -28,7 +31,9 @@
       Thanks for visiting!
     </footer>
   </div>
+  {{#if loggedIn}}
   <script src="/javascript/logout.js"></script>
+  {{/if}}
 </body>
 
 </html>

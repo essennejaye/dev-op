@@ -129,8 +129,8 @@ p {
 }
 
 .list-item {
-  margin-bottom: 10px;
-  padding: 1.5%;
+  margin: 10px;
+  padding: .5%;
   border-radius: var(--border-radius);
   background-color: var(--light-dark);
   color: var(--primary);

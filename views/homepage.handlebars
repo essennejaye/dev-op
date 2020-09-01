@@ -1,17 +1,7 @@
-<ol class="post-list list-group">
-    {{#each posts}}
-  <li>
-    <article class="posts list-item">
-      <div class="title">
-          <p>{{title}}</p>
-          <p>{{posts_text}}</p>
-      </div>
-      <div class="meta">
-       Posted by {{user.username}} {{created_at}}
-        <a href="/posts/{{id}}"></a>
-        {{!-- {{comments.length}} comment(s)</a> --}}
-      </div>
-    </article>
+<ol class="posts-list list-group">
+    {{#each posts as |post|}}
+  <li class="list-item">
+    {{> posts-info post}}
   </li>
   {{/each}}
 </ol>

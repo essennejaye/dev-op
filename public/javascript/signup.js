@@ -14,10 +14,8 @@ async function signupFormHandler(event) {
             headers: { 'Content-Type': 'application/json' }
         });
         if (response.ok) {
-            console.log('success');
-            // document.location.replace('/');
+            document.location.replace('/');
         } else {
-            console.log('unsuccessful');
             alert('That username is already taken. Please enter a different username.', response.statusText);
         }
     }
