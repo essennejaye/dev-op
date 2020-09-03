@@ -14,20 +14,6 @@ router.get('/', (req, res) => {
             'created_at',
         ],
         order: [['created_at', 'DESC']],
-        // include: [
-        //     {
-        //         model: Comments,
-        //         attributes: ['id', 'comments_text', 'posts_id', 'user_id', 'created_at'],
-        //         include: {
-        //             model: User,
-        //             attributes: ['username']
-        //         }
-        //     },
-        //     {
-        //         model: User,
-        //         attributes: ['username']
-        //     }
-        // ]
     })
         .then(dbPostsData => res.json(dbPostsData))
         .catch(err => {
@@ -81,7 +67,6 @@ router.post('/', withAuth, (req, res) => {
         user_id: req.session.user_id
     })
         .then(dbPostsData => {
-            console.log(dbPostsData);
             res.json(dbPostsData);
         })
         .catch(err => {

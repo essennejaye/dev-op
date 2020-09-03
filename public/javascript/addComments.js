@@ -20,7 +20,7 @@ async function addCommentsFormHandler (event) {
         if (response.ok) {
             document.location.reload();
         } else {
-            alert(response.statusText);
+            alert('Comment field cannot be empty', response.statusText);
         }
     }
 };

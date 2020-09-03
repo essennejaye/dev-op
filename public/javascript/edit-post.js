@@ -21,7 +21,7 @@ async function editFormHandler(event) {
         if (response.ok) {
             document.location.replace('/dashboard/');
         } else {
-            alert(response.statusText);
+            alert('You must fill in title and provide some content', response.statusText);
         }
     }
 };

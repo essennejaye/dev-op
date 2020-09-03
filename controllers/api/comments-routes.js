@@ -1,6 +1,5 @@
 const router = require('express').Router();
-const { User, Post, Comments } = require('../../models');
-const sequelize = require('../../config/connection');
+const { Comments } = require('../../models');
 const withAuth = require('../../utils/auth')
 
 router.get('/', (req, res) => {
@@ -13,7 +12,6 @@ router.get('/', (req, res) => {
 });
 router.post('/', withAuth, (req, res) => {
     // check the session
-    // if (req.session) {
         Comments.create({
             comments_text: req.body.comments_text,
             posts_id: req.body.posts_id,
@@ -27,24 +25,6 @@ router.post('/', withAuth, (req, res) => {
                 console.log(err);
                 res.status(400).json(err);
             });
-    // }
 });
-// router.delete('/:id', (req, res) => {
-//     Comments.destroy({
-//         where: {
-//             id: req.params.id
-//         }
-//     })
-//         .then(dbCommentsData => {
-//             if (!dbCommentsData) {
-//                 res.status(404).json({ message: 'No comment found with that id' });
-//             }
-//             res.json(dbCommentsData);
-//         })
-//         .catch(err => {
-//             console.log(err);
-//             res.status(400).json(err);
-//         });
-// });
 
 module.exports = router;
