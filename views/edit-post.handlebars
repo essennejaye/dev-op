@@ -1,4 +1,4 @@
-<article>
+<article class="edit-post">
     <a href="/dashboard"> &larr; Back to dashboard</a>
     <h2>
         Edit Post
@@ -12,8 +12,10 @@
             <label for="post-text">Text:</label>
             <textarea id="post-text" name="post-text">{{posts.posts_text}}</textarea>
         </div>
-        <button type="submit">Save post</button>
-        <button type="button" class="delete-post-btn">Delete post</button>
+        <div class="form-btn">
+            <button type="submit" class="btn">Save post</button>
+            <button type="button" class="delete-post-btn btn">Delete post</button>
+        </div>
     </form>
 </article>
 <script src="/javascript/edit-post.js"></script>
