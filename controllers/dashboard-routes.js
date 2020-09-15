@@ -76,7 +76,6 @@ router.get('/edit/:id', withAuth, (req, res) => {
     })
         .then(dbPostData => {
             const posts = dbPostData.get({ plain: true });
-            console.log(posts);
             res.render('edit-post', {
                 posts,
                 loggedIn: true

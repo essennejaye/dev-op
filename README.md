@@ -36,3 +36,12 @@
 
 ## Heroku url
 https://ancient-dawn-54812.herokuapp.com/
+
+## GitHub repo
+https://github.com/essennejaye/dev-op
+
+## Screenshots
+
+![](public/inages/mod14_comments.png)
+![](public/inages/mod14_home.png)
+![](public/inages/mod14_dashboard.png)
